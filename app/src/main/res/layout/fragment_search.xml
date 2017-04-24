@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <EditText
+        style="@style/search_edit_text"
+        android:hint="Textbook title" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Author"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <EditText
+        style="@style/search_edit_text"
+        android:hint="Textbook authors" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Subject"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <EditText
+        style="@style/search_edit_text"
+        android:hint="Class or subject" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:buttonTint="@android:color/white"
+        android:text="Available in Library?"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"/>
+
+    <Button
+        android:layout_marginTop="16dp"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Search"
+        android:background="@drawable/button"
+        android:textColor="@android:color/white"/>
+</LinearLayout>
