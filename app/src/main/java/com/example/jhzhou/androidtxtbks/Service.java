@@ -1,4 +1,4 @@
-package bj.androidtxtbks.rest;
+package com.example.jhzhou.androidtxtbks;
 
 import android.app.Activity;
 import android.app.IntentService;
@@ -10,8 +10,6 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import bj.androidtxtbks.Entities.Book;
 
 /**
  * Created by bj on 17/04/2017.

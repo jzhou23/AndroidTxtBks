@@ -1,4 +1,4 @@
-package bj.androidtxtbks.rest;
+package com.example.jhzhou.androidtxtbks;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import bj.androidtxtbks.Entities.Book;
 
 /**
  * Created by bj on 17/04/2017.

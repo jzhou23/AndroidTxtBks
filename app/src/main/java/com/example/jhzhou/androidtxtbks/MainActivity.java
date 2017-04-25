@@ -1,19 +1,16 @@
 package com.example.jhzhou.androidtxtbks;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import com.example.jhzhou.androidtxtbks.Book;
-import com.example.jhzhou.androidtxtbks.ResultReceiverWrapper;
-import com.example.jhzhou.androidtxtbks.RestMethods;
-import com.example.jhzhou.androidtxtbks.Service;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -25,12 +22,23 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment selectedFragment = null;
             switch (item.getItemId()) {
-
+                case R.id.navigation_home:
+                    selectedFragment = HomeFragment.getInstance();
+                    break;
+                case R.id.navigation_search:
+                    selectedFragment = SearchFragment.getInstance();
+                    break;
+                case R.id.navigation_subject:
+                    selectedFragment = SubjectFragment.getInstance();
+                    break;
             }
-            return false;
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.content, selectedFragment);
+            transaction.commit();
+            return true;
         }
-
     };
 
     @Override
@@ -43,10 +51,14 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content, HomeFragment.getInstance());
+        transaction.commit();
         
-        Intent intent = new Intent(this, Service.class);
-        intent.putExtra(Service.RECEIVER_KEY, receiver);
-        startService(intent);
+//        Intent intent = new Intent(this, Service.class);
+//        intent.putExtra(Service.RECEIVER_KEY, receiver);
+//        startService(intent);
     }
     
     public void onReceiveResult(int resultCode, Bundle data){

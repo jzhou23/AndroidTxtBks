@@ -1,4 +1,4 @@
-package bj.androidtxtbks.Entities;
+package com.example.jhzhou.androidtxtbks;
 
 import android.os.Parcel;
 import android.os.Parcelable;
