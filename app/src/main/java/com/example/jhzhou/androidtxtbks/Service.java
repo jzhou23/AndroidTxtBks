@@ -27,7 +27,7 @@ public class Service extends IntentService {
     protected void onHandleIntent(Intent intent){
         RestMethods restMethods = new RestMethods(this);
         ResultReceiver receiver = intent.getParcelableExtra(RECEIVER_KEY);
-//        call google api
+        // call google api
         try{
             ArrayList<Book> books = restMethods.getGoogleBooks("algorithm"); //<--replace with user's input
             Bundle data = new Bundle();

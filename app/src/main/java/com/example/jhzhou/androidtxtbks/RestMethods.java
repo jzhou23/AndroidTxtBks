@@ -66,7 +66,7 @@ public class RestMethods {
         while (reader.hasNext()) {
             if (reader.nextName().equals("items")) {
                 reader.beginArray();
-                while(reader.hasNext()) {
+                while (reader.hasNext()) {
                     reader.beginObject();
                     while (reader.hasNext()) {
                         nextName = reader.nextName();
@@ -82,6 +82,12 @@ public class RestMethods {
                                         book.authors.add(reader.nextString());
                                     }
                                     reader.endArray();
+                                } else if (nextName.equals("publisher")) {
+                                    book.publisher = reader.nextString();
+                                } else if (nextName.equals("publishedDate")) {
+                                    book.publishDate = reader.nextString();
+                                } else if (nextName.equals("description")) {
+                                    book.description = reader.nextString();
                                 } else if (nextName.equals("industryIdentifiers")) {
                                     reader.beginArray();
                                     while (reader.hasNext()) {
@@ -96,6 +102,14 @@ public class RestMethods {
                                             book.isbn13 = reader.nextString();
                                         }
                                         reader.endObject();
+                                    }
+                                    reader.endArray();
+                                } else if (nextName.equals("pageCount")) {
+                                    book.pageCount = reader.nextInt();
+                                } else if (nextName.equals("categories")) {
+                                    reader.beginArray();
+                                    while(reader.hasNext()){
+                                        book.categories.add(reader.nextString());
                                     }
                                     reader.endArray();
                                 } else if (nextName.equals("imageLinks")) {
@@ -142,8 +156,7 @@ public class RestMethods {
                     books.add(book);
                     book = new Book();
                 }
-            }
-            else {
+            } else {
                 reader.skipValue();
             }
         }

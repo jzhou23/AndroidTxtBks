@@ -25,6 +25,11 @@ public class Book implements Parcelable {
     public String isbn10;
     public String isbn13;
     public URL imgLink;
+    public String publisher;
+    public int pageCount;
+    public String description;
+    public List<String> categories = new LinkedList<>();
+    public String publishDate;
 
     public Book(){
     }
@@ -49,6 +54,11 @@ public class Book implements Parcelable {
         catch(Exception e){
             Log.e("error", e.getMessage());
         }
+        this.publisher = in.readString();
+        this.pageCount = in.readInt();
+        this.description = in.readString();
+        in.readList(this.categories, List.class.getClassLoader());
+        this.publishDate = in.readString();
     }
 
     public int describeContents() {
@@ -65,6 +75,11 @@ public class Book implements Parcelable {
         out.writeString(this.isbn10);
         out.writeString(this.isbn13);
         out.writeString(this.imgLink.toString());
+        out.writeString(this.publisher);
+        out.writeInt(this.pageCount);
+        out.writeString(this.description);
+        out.writeList(this.categories);
+        out.writeString(this.publishDate);
     }
 
     public static final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {

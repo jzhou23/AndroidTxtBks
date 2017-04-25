@@ -17,6 +17,8 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.R.attr.fragment;
+
 /**
  * Created by jhzhou on 4/25/17.
  */
@@ -39,6 +41,8 @@ public class DetailsFragment extends Fragment {
     @BindView(R.id.details_publisher_content) TextView publisherTextView;
     @BindView(R.id.details_isbn_10_content) TextView isbn10TextView;
     @BindView(R.id.details_isbn_13_content) TextView isbn13TextView;
+    @BindView(R.id.details_publishe_date_content) TextView publishDateTextView;
+    @BindView(R.id.details_description_content) TextView descriptionTextView;
 
     public static DetailsFragment getInstance(Book book) {
         DetailsFragment fragment = new DetailsFragment();
@@ -81,6 +85,12 @@ public class DetailsFragment extends Fragment {
 
         isbn10TextView.setText(mBook.isbn10);
         isbn13TextView.setText(mBook.isbn13);
+
+        subjectTextView.setText(mBook.categories.get(0));  //<-- use first category just for now
+        handCoverTextView.setText(String.valueOf(mBook.pageCount));
+        publisherTextView.setText(mBook.publisher);
+        publishDateTextView.setText(mBook.publishDate);
+        descriptionTextView.setText(mBook.description);
     }
 
     @Override
