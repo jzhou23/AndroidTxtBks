@@ -13,7 +13,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
     
     ArrayList<Book> books;
     ResultReceiverWrapper receiver;
@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         
         books = new ArrayList<>();
-        receiver = new ResultReceiverWrapper(new Handler());
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -62,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
 //        startService(intent);
     }
     
-    public void onReceiveResult(int resultCode, Bundle data){
-        ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
-        this.books = books;
-    }
+//    public void onReceiveResult(int resultCode, Bundle data){
+//        ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
+//        this.books = books;
+//    }
 
 //    public void open(View view) {
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

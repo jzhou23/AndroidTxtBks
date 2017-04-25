@@ -36,7 +36,5 @@ public class Service extends IntentService {
         } catch(Exception e){
             Log.w("warning", e);
         }
-//        call amazon api 1st
-//        Call amazon api 2nd for price
     }
 }

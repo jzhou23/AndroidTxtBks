@@ -10,8 +10,6 @@ import android.os.ResultReceiver;
 
 public class ResultReceiverWrapper extends ResultReceiver {
 
-    public static final String MESSAGE_SEQUENCE_NUMBER = "MESSAGE_SEQUENCE_NUMBER";
-
     public ResultReceiverWrapper(Handler handler) {
         super(handler);
     }

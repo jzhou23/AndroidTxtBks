@@ -1,6 +1,8 @@
 package com.example.jhzhou.androidtxtbks;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -24,9 +26,10 @@ import butterknife.ButterKnife;
  * Created by jhzhou on 4/24/17.
  */
 
-public class HomeFragment extends Fragment implements BookAdapter.OnListItemClickedListener{
+public class HomeFragment extends Fragment implements BookAdapter.OnListItemClickedListener, ResultReceiverWrapper.IReceive{
 
     private BookAdapter mAdapter;
+    private ResultReceiverWrapper resultReceiver;
 
     @BindView(R.id.home_fragment_recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.home_search_image) ImageView searchImageView;
@@ -39,6 +42,9 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        resultReceiver = new ResultReceiverWrapper(new Handler());
+        resultReceiver.setReceiver(this);
     }
 
     @Nullable
@@ -46,6 +52,7 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, view);
+
         return view;
     }
 
@@ -59,17 +66,21 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
             @Override
             public void onClick(View v) {
                 Log.v("searchImageView", "click");
-                List<Book> bookList = new ArrayList<Book>();
-                Book booktemp = new Book();
-                booktemp.title="chemstry";
-                booktemp.authors = new ArrayList<String>();
-                booktemp.authors.add("Jiahuang");
-                booktemp.googlePrice = 123.23;
-                booktemp.isbn10 = "123456";
-                booktemp.isbn13 = "123456";
-                bookList.add(booktemp);
+                Intent intent = new Intent(getContext(), Service.class);
+                intent.putExtra(Service.RECEIVER_KEY, resultReceiver);
+                getContext().startService(intent);
 
-                mAdapter.setBookList(bookList);
+//                List<Book> bookList = new ArrayList<Book>();
+//                Book booktemp = new Book();
+//                booktemp.title="chemstry";
+//                booktemp.authors = new ArrayList<String>();
+//                booktemp.authors.add("Jiahuang");
+//                booktemp.googlePrice = 123.23;
+//                booktemp.isbn10 = "123456";
+//                booktemp.isbn13 = "123456";
+//                bookList.add(booktemp);
+//
+//                mAdapter.setBookList(bookList);
             }
         });
 
@@ -85,5 +96,11 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
         DetailsFragment fragment = DetailsFragment.getInstance(book);
         transaction.replace(R.id.content, fragment);
         transaction.commit();
+    }
+
+    @Override
+    public void onReceiveResult(int resultCode, Bundle data){
+        ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
+        mAdapter.setBookList(books);
     }
 }
