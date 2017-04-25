@@ -55,10 +55,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         holder.bookAuthorTextView.setText(book.authors.get(0));
         holder.bookTitleTextView.setText(book.title);
 
-        double price = book.googlePrice;
-        double penngPart = price - (int)price;
-        holder.mainPriceTextView.setText(String.valueOf((int) price));
-        holder.pennyPriceTextView.setText(String.valueOf(penngPart));
+        int price = (int)Math.floor(book.googlePrice * 100);
+
+        holder.mainPriceTextView.setText("$" + String.valueOf(price / 100));
+        holder.pennyPriceTextView.setText(String.valueOf(price % 100));
 
         // binding imageview
         Glide.with(mContext).load(book.imgLink).centerCrop().into(holder.bookCoverImageView);

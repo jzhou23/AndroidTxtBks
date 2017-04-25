@@ -3,6 +3,8 @@ package com.example.jhzhou.androidtxtbks;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +27,7 @@ public class DetailsFragment extends Fragment {
 
     private Book mBook;
 
+    @BindView(R.id.details_toolbar) Toolbar mToolbar;
     @BindView(R.id.details_main_price) TextView mainPriceTextView;
     @BindView(R.id.details_penny_price) TextView pennyPriceTextView;
     @BindView(R.id.details_title) TextView titleTextView;
@@ -62,11 +65,14 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        activity.setSupportActionBar(mToolbar);
+        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        double price = mBook.googlePrice;
-        double penngPart = price - (int)price;
-        mainPriceTextView.setText(String.valueOf((int) price));
-        pennyPriceTextView.setText(String.valueOf(penngPart));
+        int price = (int)Math.floor(mBook.googlePrice * 100);
+
+        mainPriceTextView.setText("$" + String.valueOf(price / 100));
+        pennyPriceTextView.setText(String.valueOf(price % 100));
 
         titleTextView.setText(mBook.title);
         //check
@@ -75,5 +81,10 @@ public class DetailsFragment extends Fragment {
 
         isbn10TextView.setText(mBook.isbn10);
         isbn13TextView.setText(mBook.isbn13);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }
