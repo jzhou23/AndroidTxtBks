@@ -1,7 +1,9 @@
 package com.example.jhzhou.androidtxtbks;
 
 import android.content.Context;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by jhzhou on 4/24/17.
  */
@@ -20,10 +25,21 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     private List<Book> mBookList;
     private Context mContext;
+    private OnListItemClickedListener mListener;
 
-    public BookAdapter(Context context, List<Book> bookList) {
+    public interface OnListItemClickedListener {
+        void onItemClicked(Book book);
+    }
+
+    public BookAdapter(Context context, List<Book> bookList, OnListItemClickedListener listener) {
         mContext = context;
         mBookList = bookList;
+        mListener = listener;
+    }
+
+    public void setBookList(List<Book> bookList) {
+        mBookList = bookList;
+        notifyDataSetChanged();
     }
 
     @Override
@@ -57,20 +73,24 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         }
     }
 
-    public class BookViewHolder extends RecyclerView.ViewHolder {
-        TextView mainPriceTextView;
-        TextView pennyPriceTextView;
-        TextView bookTitleTextView;
-        TextView bookAuthorTextView;
-        ImageView bookCoverImageView;
+    public class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        @BindView(R.id.list_item_main_price) TextView mainPriceTextView;
+        @BindView(R.id.list_item_penny_price) TextView pennyPriceTextView;
+        @BindView(R.id.list_item_title) TextView bookTitleTextView;
+        @BindView(R.id.list_item_author) TextView bookAuthorTextView;
+        @BindView(R.id.list_item_bookcover) ImageView bookCoverImageView;
 
         public BookViewHolder(View itemView) {
             super(itemView);
-            mainPriceTextView = (TextView) itemView.findViewById(R.id.list_item_main_price);
-            pennyPriceTextView = (TextView) itemView.findViewById(R.id.list_item_penny_price);
-            bookTitleTextView = (TextView) itemView.findViewById(R.id.list_item_title);
-            bookAuthorTextView = (TextView) itemView.findViewById(R.id.list_item_author);
-            bookCoverImageView = (ImageView) itemView.findViewById(R.id.list_item_bookcover);
+            ButterKnife.bind(this, itemView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Log.v("BookAdapter", "click");
+            Book book = mBookList.get(getAdapterPosition());
+            mListener.onItemClicked(book);
         }
     }
 }

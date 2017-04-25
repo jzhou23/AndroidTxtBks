@@ -13,17 +13,9 @@ import android.view.ViewGroup;
 
 public class SubjectFragment extends Fragment {
 
-    private static SubjectFragment instance = null;
-
-    private SubjectFragment() {
-
-    }
-
-    public static synchronized SubjectFragment getInstance() {
-        if (instance == null) {
-            instance = new SubjectFragment();
-        }
-        return instance;
+    public static SubjectFragment getInstance() {
+        SubjectFragment fragment = new SubjectFragment();
+        return fragment;
     }
 
     @Override

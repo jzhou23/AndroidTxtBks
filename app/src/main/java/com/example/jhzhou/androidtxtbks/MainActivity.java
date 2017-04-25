@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -65,4 +66,11 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
         this.books = books;
     }
+
+//    public void open(View view) {
+//        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//        transaction.replace(R.id.content, SearchFragment.getInstance());
+//        transaction.addToBackStack("search");
+//        transaction.commit();
+//    }
 }
