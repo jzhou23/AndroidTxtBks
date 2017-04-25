@@ -16,7 +16,9 @@ import com.example.jhzhou.androidtxtbks.RestMethods;
 import com.example.jhzhou.androidtxtbks.Service;
 
 public class MainActivity extends AppCompatActivity {
-
+    
+    ArrayList<Book> books;
+    ResultReceiverWrapper receiver;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -35,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        books = new ArrayList<>();
+        receiver = new ResultReceiverWrapper(new Handler());
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
