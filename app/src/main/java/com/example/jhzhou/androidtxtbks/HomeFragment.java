@@ -3,6 +3,7 @@ package com.example.jhzhou.androidtxtbks;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -71,7 +72,6 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mAdapter = new BookAdapter(getActivity(), new ArrayList<Book>(), this);
 
         searchImageView.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +108,6 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         DetailsFragment fragment = DetailsFragment.getInstance(book);
         transaction.replace(R.id.content, fragment);
-        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        transaction.addToBackStack("details");
         transaction.commit();
     }
 
@@ -126,4 +124,8 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
         mAdapter.setBookList(books);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
 }

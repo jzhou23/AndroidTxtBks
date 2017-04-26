@@ -31,6 +31,10 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         void onItemClicked(Book book);
     }
 
+    public List<Book> getBookList() {
+        return mBookList;
+    }
+
     public BookAdapter(Context context, List<Book> bookList, OnListItemClickedListener listener) {
         mContext = context;
         mBookList = bookList;
