@@ -19,6 +19,7 @@ public class Service extends IntentService {
 
     public static final String BOOK_KEY = "BOOK_KEY";
     public static final String RECEIVER_KEY = "RECEIVER_KEY";
+    public static final String SEARCH_CRITERIA = "SEARCH_CRITERIA";
 
     public Service(){
         super("Service");
@@ -27,9 +28,11 @@ public class Service extends IntentService {
     protected void onHandleIntent(Intent intent){
         RestMethods restMethods = new RestMethods(this);
         ResultReceiver receiver = intent.getParcelableExtra(RECEIVER_KEY);
+        String searchCriteria = intent.getStringExtra(SEARCH_CRITERIA);
+        searchCriteria = searchCriteria.replaceAll("\\s+", "+");
         // call google api
         try{
-            ArrayList<Book> books = restMethods.getGoogleBooks("algorithm"); //<--replace with user's input
+            ArrayList<Book> books = restMethods.getGoogleBooks(searchCriteria);
             Bundle data = new Bundle();
             data.putParcelableArrayList(BOOK_KEY, books);
             receiver.send(Activity.RESULT_OK, data);

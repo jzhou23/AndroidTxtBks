@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -36,6 +37,7 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
     @BindView(R.id.home_fragment_recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.home_search_image) ImageView searchImageView;
     @BindView(R.id.home_fragment_progress_bar) ProgressBar mProgressBar;
+    @BindView(R.id.home_search_criteria) EditText searchCriteria;
 
     public static HomeFragment getInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -81,19 +83,8 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
                 mProgressBar.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(getContext(), Service.class);
                 intent.putExtra(Service.RECEIVER_KEY, resultReceiver);
+                intent.putExtra(Service.SEARCH_CRITERIA, searchCriteria.getText().toString());
                 getContext().startService(intent);
-
-//                List<Book> bookList = new ArrayList<Book>();
-//                Book booktemp = new Book();
-//                booktemp.title="chemstry";
-//                booktemp.authors = new ArrayList<String>();
-//                booktemp.authors.add("Jiahuang");
-//                booktemp.googlePrice = 123.23;
-//                booktemp.isbn10 = "123456";
-//                booktemp.isbn13 = "123456";
-//                bookList.add(booktemp);
-//
-//                mAdapter.setBookList(bookList);
             }
         });
 

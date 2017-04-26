@@ -19,9 +19,9 @@ public class Book implements Parcelable {
     public String title;
     public List<String> authors = new LinkedList<>();
     public double googlePrice;
-    public double amazonPrice;
+//    public double amazonPrice;
     public URL googleLink;
-    public URL amazonLink;
+//    public URL amazonLink;
     public String isbn10;
     public String isbn13;
     public URL imgLink;
@@ -38,10 +38,10 @@ public class Book implements Parcelable {
         this.title = in.readString();
         in.readList(authors, List.class.getClassLoader());
         this.googlePrice = in.readDouble();
-        this.amazonPrice = in.readDouble();
+//        this.amazonPrice = in.readDouble();
         try{
             this.googleLink = new URL(in.readString());
-            this.amazonLink = new URL(in.readString());
+//            this.amazonLink = new URL(in.readString());
         }
         catch(Exception e){
             Log.e("error", e.getMessage());
@@ -69,9 +69,9 @@ public class Book implements Parcelable {
         out.writeString(this.title);
         out.writeList(this.authors);
         out.writeDouble(this.googlePrice);
-        out.writeDouble(this.amazonPrice);
+//        out.writeDouble(this.amazonPrice);
         out.writeString(this.googleLink.toString());
-        out.writeString(this.amazonLink.toString());
+//        out.writeString(this.amazonLink.toString());
         out.writeString(this.isbn10);
         out.writeString(this.isbn13);
         out.writeString(this.imgLink.toString());

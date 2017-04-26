@@ -30,11 +30,13 @@
                 android:paddingBottom="8dp">
 
                 <EditText
+                    android:id="@+id/home_search_criteria"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/search_background"
                     android:hint="Search for TextBooks"
-                    android:paddingLeft="16dp"/>
+                    android:paddingLeft="16dp"
+                    android:textColor="@color/colorPrimaryDark"/>
 
                 <ImageView
                     android:id="@+id/home_search_image"
