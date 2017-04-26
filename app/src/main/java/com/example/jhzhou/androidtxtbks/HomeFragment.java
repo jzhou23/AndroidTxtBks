@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,15 +27,16 @@ import butterknife.ButterKnife;
  * Created by jhzhou on 4/24/17.
  */
 
-public class HomeFragment extends Fragment implements BookAdapter.OnListItemClickedListener, ResultReceiverWrapper.IReceive{
+public class HomeFragment extends Fragment implements BookAdapter.OnListItemClickedListener, ResultReceiverWrapper.IReceive {
 
     private BookAdapter mAdapter;
     private ResultReceiverWrapper resultReceiver;
 
     @BindView(R.id.home_fragment_recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.home_search_image) ImageView searchImageView;
+    @BindView(R.id.home_fragment_progress_bar) ProgressBar mProgressBar;
 
-    public static  HomeFragment getInstance() {
+    public static HomeFragment getInstance() {
         HomeFragment fragment = new HomeFragment();
         return fragment;
     }
@@ -42,9 +44,19 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         resultReceiver = new ResultReceiverWrapper(new Handler());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         resultReceiver.setReceiver(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        resultReceiver.setReceiver(null);
     }
 
     @Nullable
@@ -66,6 +78,7 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
             @Override
             public void onClick(View v) {
                 Log.v("searchImageView", "click");
+                mProgressBar.setVisibility(View.VISIBLE);
                 Intent intent = new Intent(getContext(), Service.class);
                 intent.putExtra(Service.RECEIVER_KEY, resultReceiver);
                 getContext().startService(intent);
@@ -95,18 +108,22 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         DetailsFragment fragment = DetailsFragment.getInstance(book);
         transaction.replace(R.id.content, fragment);
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.addToBackStack("details");
         transaction.commit();
     }
 
     @Override
-    public void onReceiveResult(int resultCode, Bundle data){
+    public void onReceiveResult(int resultCode, Bundle data) {
+        mProgressBar.setVisibility(View.INVISIBLE);
         ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
         List<Book> removingBooks = new ArrayList<>();
-        for(Book book: books){
-            if(book.googlePrice == 0)
+        for (Book book : books) {
+            if (book.googlePrice == 0)
                 removingBooks.add(book);
         }
         books.removeAll(removingBooks);
         mAdapter.setBookList(books);
     }
+
 }
