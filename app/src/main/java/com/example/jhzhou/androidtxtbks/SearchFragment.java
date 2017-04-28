@@ -92,6 +92,6 @@ public class SearchFragment extends Fragment implements ResultReceiverWrapper.IR
     @Override
     public void onReceiveResult(int resultCode, Bundle data) {
         ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
-        Log.v("books", String.valueOf(books.size()));
+         Log.v("books", String.valueOf(books.size()));
     }
 }

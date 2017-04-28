@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
     @BindView(R.id.home_search_image) ImageView searchImageView;
     @BindView(R.id.home_fragment_progress_bar) ProgressBar mProgressBar;
     @BindView(R.id.home_search_criteria) EditText searchCriteria;
+    @BindView(R.id.home_fragment_textview) TextView textView;
 
     public static HomeFragment getInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -111,8 +113,15 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
             if (book.googlePrice == 0)
                 removingBooks.add(book);
         }
-        books.removeAll(removingBooks);
-        mAdapter.setBookList(books);
+        if(books.size()>0){
+            mRecyclerView.setVisibility(View.VISIBLE);
+            books.removeAll(removingBooks);
+            mAdapter.setBookList(books);
+        } else{
+            mRecyclerView.setVisibility(View.INVISIBLE);
+            textView.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
