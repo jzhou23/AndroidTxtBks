@@ -1,5 +1,6 @@
 package com.example.jhzhou.androidtxtbks;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -32,11 +33,25 @@ public class SubjectFragment extends Fragment {
 
     private ArrayList<String> subjectList;
 
+    private OnListItemClickListener mOnClickListener;
+
     @BindView(R.id.subject_list_view) ListView subjectListView;
 
     public static SubjectFragment getInstance() {
         SubjectFragment fragment = new SubjectFragment();
         return fragment;
+    }
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mOnClickListener = (OnListItemClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException();
+        }
     }
 
     @Nullable
@@ -60,7 +75,8 @@ public class SubjectFragment extends Fragment {
         subjectListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // todo
+                String searchKey = subjectList.get(position);
+                mOnClickListener.onClickListener(searchKey);
             }
         });
     }
@@ -77,5 +93,9 @@ public class SubjectFragment extends Fragment {
             subjectList.add(temp);
         }
         Collections.sort(subjectList);
+    }
+
+    public interface OnListItemClickListener {
+        void onClickListener(String searchKey);
     }
 }

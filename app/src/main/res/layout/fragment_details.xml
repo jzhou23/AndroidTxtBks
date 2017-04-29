@@ -117,7 +117,7 @@
                 <TextView
                     android:id="@+id/details_handcover_label"
                     style="@style/details_sub_info_label"
-                    android:text="Handcover:" />
+                    android:text="Pages:" />
 
                 <TextView
                     android:id="@+id/details_handcover_content"

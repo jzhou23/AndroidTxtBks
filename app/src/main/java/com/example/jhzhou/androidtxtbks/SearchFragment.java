@@ -1,6 +1,7 @@
 package com.example.jhzhou.androidtxtbks;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +27,8 @@ import butterknife.ButterKnife;
 
 public class SearchFragment extends Fragment implements ResultReceiverWrapper.IReceive {
 
+    private static final String TAG_LOG = SearchFragment.class.getSimpleName();
+
     private static final String TITLE = "title";
     private static final String AUTHOR = "author";
     private static final String SUBJECT = "subject";
@@ -36,9 +39,24 @@ public class SearchFragment extends Fragment implements ResultReceiverWrapper.IR
     @BindView(R.id.search_button) Button button;
     ResultReceiverWrapper resultReceiver;
 
+    private String mSearchKey;
+
+    private SubjectFragment.OnListItemClickListener mOnClickListener;
+
     public static SearchFragment getInstance() {
         SearchFragment fragment = new SearchFragment();
         return fragment;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mOnClickListener = (SubjectFragment.OnListItemClickListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException();
+        }
     }
 
     @Override
@@ -89,10 +107,8 @@ public class SearchFragment extends Fragment implements ResultReceiverWrapper.IR
                     criteria += String.format("subject:%s+", subject);
                 criteria = criteria.substring(0, criteria.length() - 1);
 
-                Intent intent = new Intent(getContext(), Service.class);
-                intent.putExtra(Service.SEARCH_CRITERIA, criteria.toString());
-                intent.putExtra(Service.RECEIVER_KEY, resultReceiver);
-                getContext().startService(intent);
+                mOnClickListener.onClickListener(criteria);
+                Log.v(TAG_LOG, criteria);
             }
         });
     }
@@ -112,4 +128,16 @@ public class SearchFragment extends Fragment implements ResultReceiverWrapper.IR
         bundle.putString(SUBJECT, subjectEditText.getText().toString());
         outState.putBundle("Bundle", bundle);
     }
+
+//    public void setmSearchKey(String searchKey) {
+//        mSearchKey = searchKey;
+//    }
+//
+//    public void startSearchKey() {
+//        Intent intent = new Intent(getContext(), Service.class);
+//        intent.putExtra(Service.SEARCH_CRITERIA, mSearchKey);
+//        intent.putExtra(Service.RECEIVER_KEY, resultReceiver);
+//        getContext().startService(intent);
+//    }
+
 }

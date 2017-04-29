@@ -14,10 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SubjectFragment.OnListItemClickListener {
 
-    ArrayList<Book> books;
+    List<Book> books;
     ResultReceiverWrapper receiver;
 
     HomeFragment mFragmentHome;
@@ -30,28 +31,20 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
-
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     selectedFragment = mFragmentHome;
                     break;
                 case R.id.navigation_search:
-                    if (mFragmentSearch == null) {
-                        mFragmentSearch = SearchFragment.getInstance();
-                    }
                     selectedFragment = mFragmentSearch;
                     break;
                 case R.id.navigation_subject:
-                    if (mFragmentSubject == null) {
-                        mFragmentSubject = SubjectFragment.getInstance();
-                    }
                     selectedFragment = mFragmentSubject;
                     break;
             }
 
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.content, selectedFragment);
-            transaction.addToBackStack(null);
             transaction.commit();
             return true;
         }
@@ -63,26 +56,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        books = new ArrayList<>();
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        if (mFragmentHome == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (savedInstanceState == null) {
             mFragmentHome = HomeFragment.getInstance();
+            mFragmentSearch = SearchFragment.getInstance();
+            mFragmentSubject = SubjectFragment.getInstance();
+
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.content, mFragmentHome);
             transaction.commit();
         }
+    }
 
-//        Intent intent = new Intent(this, Service.class);
-//        intent.putExtra(Service.RECEIVER_KEY, receiver);
-//        startService(intent);
+    @Override
+    public void onClickListener(String searchKey) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content, mFragmentHome);
+        transaction.commit();
+
+        mFragmentHome.setmSearchKey(searchKey);
+        mFragmentHome.startSearch();
     }
 
 //    public void onReceiveResult(int resultCode, Bundle data){
 //        ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
 //        this.books = books;
 //    }
-
 }

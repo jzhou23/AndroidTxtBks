@@ -26,6 +26,7 @@ public class Service extends IntentService {
     }
 
     protected void onHandleIntent(Intent intent){
+        Log.v("onHandleIntent", "onHandleIntent");
         RestMethods restMethods = new RestMethods(this);
         ResultReceiver receiver = intent.getParcelableExtra(RECEIVER_KEY);
         String searchCriteria = intent.getStringExtra(SEARCH_CRITERIA);

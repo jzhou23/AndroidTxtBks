@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/details_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="48dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/details_image_view"
+                android:layout_width="100dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="8dp"
+                apps:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/details_main_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/details_image_view"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                apps:text="$189" />
+
+            <TextView
+                android:id="@+id/details_penny_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_toEndOf="@id/details_main_price"
+                android:layout_toRightOf="@id/details_main_price"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                apps:text="97" />
+
+            <TextView
+                android:id="@+id/details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/details_main_price"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/details_image_view"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp"
+                apps:text="Chemistry: A Molecular Approach" />
+
+            <TextView
+                android:id="@+id/details_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/details_title"
+                android:layout_marginTop="4dp"
+                android:layout_toRightOf="@id/details_image_view"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="18sp"
+                apps:text="Nivaldo J.Tro" />
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:background="@drawable/button"
+            android:text="Buy Now"
+            android:textColor="@android:color/white" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_subject_label"
+                style="@style/details_sub_info_label"
+                android:text="Subject:" />
+
+            <TextView
+                android:id="@+id/details_subject_content"
+                style="@style/details_sub_info_content"
+                apps:text="Chermistry" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_handcover_label"
+                style="@style/details_sub_info_label"
+                android:text="Pages:" />
+
+            <TextView
+                android:id="@+id/details_handcover_content"
+                style="@style/details_sub_info_content"
+                apps:text="1312 pages" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_publisher_label"
+                style="@style/details_sub_info_label"
+                android:text="Publisher:" />
+
+            <TextView
+                android:id="@+id/details_publisher_content"
+                style="@style/details_sub_info_content"
+                apps:text="Chermistry" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_publish_date_label"
+                style="@style/details_sub_info_label"
+                android:text="Publish Date:" />
+
+            <TextView
+                android:id="@+id/details_publishe_date_content"
+                style="@style/details_sub_info_content"
+                apps:text="Chermistry" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_isbn_10_label"
+                style="@style/details_sub_info_label"
+                android:text="ISBN-10:" />
+
+            <TextView
+                android:id="@+id/details_isbn_10_content"
+                style="@style/details_sub_info_content"
+                apps:text="1928521902" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_isbn_13_label"
+                style="@style/details_sub_info_label"
+                android:text="ISBN-13:" />
+
+            <TextView
+                android:id="@+id/details_isbn_13_content"
+                style="@style/details_sub_info_content"
+                apps:text="9087412345123" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_description_label"
+                style="@style/details_sub_info_label"
+                android:text="Description:" />
+
+            <TextView
+                android:id="@+id/details_description_content"
+                style="@style/details_sub_info_content"
+                android:textColor="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

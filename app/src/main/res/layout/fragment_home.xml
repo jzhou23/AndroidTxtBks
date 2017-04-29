@@ -2,7 +2,8 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appBar"
@@ -18,16 +19,16 @@
             app:layout_scrollFlags="scroll|enterAlways">
 
             <FrameLayout
-                android:focusable="true"
-                android:focusableInTouchMode="true"
                 android:layout_width="match_parent"
-                android:elevation="2dp"
                 android:layout_height="match_parent"
                 android:background="@color/colorPrimaryDark"
-                android:paddingTop="8dp"
+                android:elevation="2dp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingBottom="8dp"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingBottom="8dp">
+                android:paddingTop="8dp">
 
                 <EditText
                     android:id="@+id/home_search_criteria"
@@ -35,17 +36,19 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/search_background"
                     android:hint="Search for TextBooks"
+                    android:imeOptions="actionDone"
+                    android:maxLines="1"
                     android:paddingLeft="16dp"
-                    android:textColor="@color/colorPrimaryDark"/>
+                    android:textColor="@color/colorPrimaryDark" />
 
                 <ImageView
                     android:id="@+id/home_search_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
                     android:layout_marginRight="4dp"
-                    app:srcCompat="@drawable/ic_search_white_36dp"
                     android:background="@drawable/search_button"
-                    android:layout_gravity="center_vertical|end" />
+                    app:srcCompat="@drawable/ic_search_white_36dp" />
             </FrameLayout>
         </android.support.v7.widget.Toolbar>
 
@@ -56,24 +59,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:background="@color/colorPrimaryDark"
-        android:visibility="invisible"/>
+        android:visibility="invisible"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <TextView
         android:id="@+id/home_fragment_textview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="No Results Found"
-        android:textSize="24sp"
-        android:visibility="visible"/>
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="Try to search"
+        android:textSize="18sp"
+        android:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/home_fragment_progress_bar"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:visibility="invisible" />
 
 </android.support.design.widget.CoordinatorLayout>
