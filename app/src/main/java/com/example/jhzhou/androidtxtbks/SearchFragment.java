@@ -26,14 +26,14 @@ import butterknife.ButterKnife;
 
 public class SearchFragment extends Fragment implements ResultReceiverWrapper.IReceive {
 
-    @BindView(R.id.search_title)
-    EditText titleEditText;
-    @BindView(R.id.search_author)
-    EditText authorEditText;
-    @BindView(R.id.search_subject)
-    EditText subjectEditText;
-    @BindView(R.id.search_button)
-    Button button;
+    private static final String TITLE = "title";
+    private static final String AUTHOR = "author";
+    private static final String SUBJECT = "subject";
+
+    @BindView(R.id.search_title) EditText titleEditText;
+    @BindView(R.id.search_author) EditText authorEditText;
+    @BindView(R.id.search_subject) EditText subjectEditText;
+    @BindView(R.id.search_button) Button button;
     ResultReceiverWrapper resultReceiver;
 
     public static SearchFragment getInstance() {
@@ -58,6 +58,14 @@ public class SearchFragment extends Fragment implements ResultReceiverWrapper.IR
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        if (savedInstanceState != null) {
+            Bundle bundle = savedInstanceState.getBundle("Bundle");
+            titleEditText.setText(bundle.getString(TITLE));
+            authorEditText.setText(bundle.getString(AUTHOR));
+            subjectEditText.setText(bundle.getString(SUBJECT));
+        }
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,5 +101,15 @@ public class SearchFragment extends Fragment implements ResultReceiverWrapper.IR
     public void onReceiveResult(int resultCode, Bundle data) {
         ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
          Log.v("books", String.valueOf(books.size()));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Bundle bundle = new Bundle();
+        bundle.putString(TITLE, titleEditText.getText().toString());
+        bundle.putString(AUTHOR, authorEditText.getText().toString());
+        bundle.putString(SUBJECT, subjectEditText.getText().toString());
+        outState.putBundle("Bundle", bundle);
     }
 }

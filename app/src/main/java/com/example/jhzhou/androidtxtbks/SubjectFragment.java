@@ -6,11 +6,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by jhzhou on 4/24/17.
@@ -26,25 +32,37 @@ public class SubjectFragment extends Fragment {
 
     private ArrayList<String> subjectList;
 
+    @BindView(R.id.subject_list_view) ListView subjectListView;
+
     public static SubjectFragment getInstance() {
         SubjectFragment fragment = new SubjectFragment();
         return fragment;
     }
 
+    @Nullable
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_subject, container, false);
+        ButterKnife.bind(this, view);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState != null) {
             subjectList = savedInstanceState.getStringArrayList(LIST);
         } else {
             initailList();
         }
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_subject, container, false);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.getActivity(), R.layout.list_view_item, subjectList);
+        subjectListView.setAdapter(adapter);
+        subjectListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // todo
+            }
+        });
     }
 
     @Override

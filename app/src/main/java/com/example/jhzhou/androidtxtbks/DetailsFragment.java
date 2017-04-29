@@ -55,7 +55,7 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBook = getArguments().getParcelable(BOOK);
+//        mBook = getArguments().getParcelable(BOOK);
     }
 
     @Nullable
@@ -72,6 +72,8 @@ public class DetailsFragment extends Fragment {
         AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(mToolbar);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mBook = getArguments().getParcelable(BOOK);
 
         int price = (int)Math.floor(mBook.googlePrice * 100);
 
