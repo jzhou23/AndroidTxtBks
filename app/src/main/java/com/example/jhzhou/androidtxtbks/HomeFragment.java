@@ -122,8 +122,8 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
         ArrayList<Book> books = data.getParcelableArrayList(Service.BOOK_KEY);
         List<Book> removingBooks = new ArrayList<>();
         for (Book book : books) {
-            if (book.googlePrice == 0)
-                removingBooks.add(book);
+//            if (book.googlePrice == 0)
+//                removingBooks.add(book);
         }
         if(books.size() > 0){
             showData();

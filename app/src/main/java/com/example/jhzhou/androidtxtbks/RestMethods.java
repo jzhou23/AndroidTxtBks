@@ -41,7 +41,8 @@ public class RestMethods {
         try {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             JsonReader jd = new JsonReader(new BufferedReader(new InputStreamReader(in)));
-            return readBook((jd));
+            ArrayList<Book> books = readBook((jd));
+            return books;
         } catch (Exception e) {
             Log.w("error", e);
         } finally {
@@ -100,6 +101,9 @@ public class RestMethods {
                                         } else if (nextName.equals("type") && nextString.equals("ISBN_13")) {
                                             reader.nextName();
                                             book.isbn13 = reader.nextString();
+                                        } else{
+                                            reader.nextName();
+                                            reader.nextString();
                                         }
                                         reader.endObject();
                                     }
