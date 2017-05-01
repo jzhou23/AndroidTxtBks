@@ -87,6 +87,7 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
             @Override
             public void onClick(View v) {
                 Log.v("searchImageView", "click");
+                mProgressBar.setVisibility(View.VISIBLE);
                 mSearchKey = searchCriteria.getText().toString();
                 startSearch();
             }
@@ -162,10 +163,14 @@ public class HomeFragment extends Fragment implements BookAdapter.OnListItemClic
 
     public void startSearch() {
         Log.v(TAG_LOG, "startSearch");
+        searchCriteria.setText("");
         Intent intent = new Intent(mContext, Service.class);
         intent.putExtra(Service.RECEIVER_KEY, resultReceiver);
         intent.putExtra(Service.SEARCH_CRITERIA, mSearchKey);
         Log.v("mSearchKey", mSearchKey);
+        if(mProgressBar == null){
+            mProgressBar = (ProgressBar)getView().findViewById(R.id.home_fragment_progress_bar);
+        }
         mProgressBar.setVisibility(View.VISIBLE);
         mContext.startService(intent);
     }

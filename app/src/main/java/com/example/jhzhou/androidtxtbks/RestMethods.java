@@ -159,6 +159,7 @@ public class RestMethods {
                     reader.endObject();
                     books.add(book);
                     book = new Book();
+                    book.googleLink = new URL("http://www.google.com");
                 }
             } else {
                 reader.skipValue();
