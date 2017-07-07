@@ -26,21 +26,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:padding="8dp">
 
                 <ImageView
                     android:id="@+id/details_image_view"
                     android:layout_width="100dp"
                     android:layout_height="120dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
                     apps:background="@android:color/darker_gray" />
 
                 <TextView
                     android:id="@+id/details_main_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/details_image_view"
+                    android:layout_toEndOf="@id/details_image_view"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="32sp"
                     android:textStyle="bold"
@@ -52,7 +51,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:layout_toEndOf="@id/details_main_price"
-                    android:layout_toRightOf="@id/details_main_price"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -64,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_main_price"
                     android:layout_marginTop="4dp"
-                    android:layout_toRightOf="@id/details_image_view"
+                    android:layout_toEndOf="@id/details_image_view"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
                     apps:text="Chemistry: A Molecular Approach" />
@@ -75,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/details_title"
                     android:layout_marginTop="4dp"
-                    android:layout_toRightOf="@id/details_image_view"
+                    android:layout_toEndOf="@id/details_image_view"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="18sp"
                     apps:text="Nivaldo J.Tro" />
@@ -87,19 +85,19 @@
                 android:layout_height="40dp"
                 android:layout_gravity="end"
                 android:background="@drawable/button"
-                android:text="Buy Now"
+                android:text="@string/btn_buy_now"
                 android:textColor="@android:color/white" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/details_subject_label"
                     style="@style/details_sub_info_label"
-                    android:text="Subject:" />
+                    android:text="@string/details_subject_label" />
 
                 <TextView
                     android:id="@+id/details_subject_content"
@@ -111,13 +109,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/details_handcover_label"
                     style="@style/details_sub_info_label"
-                    android:text="Pages:" />
+                    android:text="@string/details_pages_label" />
 
                 <TextView
                     android:id="@+id/details_handcover_content"
@@ -129,13 +127,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/details_publisher_label"
                     style="@style/details_sub_info_label"
-                    android:text="Publisher:" />
+                    android:text="@string/details_publisher_label" />
 
                 <TextView
                     android:id="@+id/details_publisher_content"
@@ -147,13 +145,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/details_publish_date_label"
                     style="@style/details_sub_info_label"
-                    android:text="Publish Date:" />
+                    android:text="@string/details_publish_date_label" />
 
                 <TextView
                     android:id="@+id/details_publishe_date_content"
@@ -165,13 +163,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/details_isbn_10_label"
                     style="@style/details_sub_info_label"
-                    android:text="ISBN-10:" />
+                    android:text="@string/details_isbn_10_label" />
 
                 <TextView
                     android:id="@+id/details_isbn_10_content"
@@ -183,13 +181,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/details_isbn_13_label"
                     style="@style/details_sub_info_label"
-                    android:text="ISBN-13:" />
+                    android:text="@string/details_isbn_13_label" />
 
                 <TextView
                     android:id="@+id/details_isbn_13_content"
@@ -201,13 +199,13 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/details_description_label"
                     style="@style/details_sub_info_label"
-                    android:text="Description:" />
+                    android:text="@string/details_description_label" />
 
                 <TextView
                     android:id="@+id/details_description_content"

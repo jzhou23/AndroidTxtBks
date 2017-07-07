@@ -3,4 +3,12 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="details_description_label">Description:</string>
+    <string name="details_isbn_13_label">ISBN-13:</string>
+    <string name="details_isbn_10_label">ISBN-10:</string>
+    <string name="details_publish_date_label">Publish Date:</string>
+    <string name="details_publisher_label">Publisher:</string>
+    <string name="details_pages_label">Pages:</string>
+    <string name="details_subject_label">Subject:</string>
+    <string name="btn_buy_now">Buy Now</string>
 </resources>
