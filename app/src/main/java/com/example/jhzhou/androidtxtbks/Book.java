@@ -34,6 +34,12 @@ public class Book implements Parcelable {
     public Book(){
     }
 
+    public String getFirstAuthor(){
+        if(authors.size()<1)
+            return "---";
+        return authors.get(0);
+    }
+
     public Book(Parcel in) {
         this.title = in.readString();
         in.readList(authors, List.class.getClassLoader());

@@ -56,7 +56,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public void onBindViewHolder(BookViewHolder holder, int position) {
         Book book = mBookList.get(position);
         // check
-        holder.bookAuthorTextView.setText(book.authors.get(0));
+        holder.bookAuthorTextView.setText(book.getFirstAuthor());
         holder.bookTitleTextView.setText(book.title);
 
         int price = (int)Math.floor(book.googlePrice * 100);
